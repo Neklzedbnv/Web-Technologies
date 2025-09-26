@@ -1,55 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Favorites</title>
+  <!-- Твой первый файл (не меняем) -->
   <link rel="stylesheet" href="style.css">
+  <!-- Второй файл с новыми стилями -->
+  <link rel="stylesheet" href="extra.css">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <h1>Mini Recipe Book</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="breakfast.html">Breakfast</a>
-        <a href="lunch.html">Lunch</a>
-        <a href="dinner.html">Dinner</a>
-        <a href="desserts.html">Desserts</a>
-        <a href="favorites.html" class="active">Favorites</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-  <!-- Hero -->
-  <section class="hero" style="background:#e0f2fe;">
-    <h1>Your Favorite Recipes</h1>
-    <p>Save and enjoy the meals you love most.</p>
-  </section>
+  <div class="page"><!-- GRID-контейнер -->
 
-  <!-- Content -->
-  <section class="recipes">
-    <center><h2>Favorite Picks</h2></center>
-    <div class="cards">
-      <div class="card">
-       
-        <h3>Pizza</h3>
-        <img src="pizza.png" alt="pizza" width="200" height="200">
-        <p>Cheesy pizza with fresh toppings.</p>
+    <!-- Header (Flexbox) -->
+    <header class="site-header">
+      <div class="header-inner">
+        <h1 class="logo">Mini Recipe Book</h1>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="breakfast.html">Breakfast</a>
+          <a href="lunch.html">Lunch</a>
+          <a href="dinner.html">Dinner</a>
+          <a href="desserts.html">Desserts</a>
+          <a href="favorites.html" class="active">Favorites</a>
+          <a href="contact.html">Contact</a>
+        </nav>
       </div>
-      <div class="card">
-        <h3>Donuts</h3>
-        <img src="donuts.png" alt="donuts" width="200" height="200">
-        <p>Soft donuts with glaze.</p>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    Team Mini Recipe Book | Members: Abzal, Inabat, Gulzada, Asem
-  </footer>
+    <!-- Sidebar (Grid area) -->
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <ul>
+        <li><a href="#">Breakfast</a></li>
+        <li><a href="#">Lunch</a></li>
+        <li><a href="#">Dinner</a></li>
+        <li><a href="#">Desserts</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content (Grid area) -->
+    <main class="main">
+      <!-- Hero -->
+      <section class="hero">
+        <h1>Your Favorite Recipes</h1>
+        <p>Save and enjoy the meals you love most.</p>
+      </section>
+
+      <!-- Recipes cards (Flexbox) -->
+      <section class="recipes">
+        <h2>Favorite Picks</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Pizza</h3>
+            <img src="pizza.png" alt="pizza">
+            <p>Cheesy pizza with fresh toppings.</p>
+            <button>Open Recipe</button>
+          </div>
+          <div class="card">
+            <h3>Donuts</h3>
+            <img src="donuts.png" alt="donuts">
+            <p>Soft donuts with glaze.</p>
+            <button>Open Recipe</button>
+          </div>
+          <div class="card">
+            <h3>Salad</h3>
+            <img src="https://img.freepik.com/premium-vector/greek-salad-icon-white-background_165488-2730.jpg" alt="salad">
+            <p>Fresh vegetable salad.</p>
+            <button>Open Recipe</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      Team Mini Recipe Book | Members: Abzal, Inabat, Gulzada, Asem
+    </footer>
+  </div>
 </body>
 </html>
