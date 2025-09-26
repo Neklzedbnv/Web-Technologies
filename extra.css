@@ -1,0 +1,128 @@
+
+.page {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Header (Flexbox) */
+.site-header {
+  grid-area: header;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-nav {
+  display: flex;
+  gap: 15px;
+}
+
+.site-nav a.active {
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* Sidebar */
+.sidebar {
+  grid-area: sidebar;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Main content */
+.main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Hero */
+.hero {
+  background: #e0f2fe;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Cards (Flexbox) */
+.cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 220px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.card button {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Footer */
+.site-footer {
+  grid-area: footer;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Адаптив */
+@media (max-width: 800px) {
+  .page {
+    grid-template-areas:
+      "header"
+      "main"
+      "sidebar"
+      "footer";
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+}
