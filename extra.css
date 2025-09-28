@@ -83,7 +83,8 @@
 
 .card img {
   width: 100%;
-  border-radius: 6px;
+  height: 100%;    
+  object-fit: cover; 
 }
 
 .card button {
@@ -105,6 +106,7 @@
 .site-footer {
   grid-area: footer;
   background: #fff;
+  color:  #000000;
   text-align: center;
   padding: 15px;
   border-radius: 8px;
