@@ -10,6 +10,29 @@
   --color-text: #1E293B;       
 }
 
+/* Popup styles (Task 3) */
+.modal-simple {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1080;
+}
+.modal-simple.show {
+  display: block;
+}
+.modal-backdrop-simple {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+}
+.modal-dialog-simple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 480px);
+}
+
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
