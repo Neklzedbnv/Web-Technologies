@@ -31,8 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
       errorBox.innerHTML = errors.length ? errors.join("<br>") : "";
 
       if (errors.length === 0) {
-        alert("✅ Форма успешно отправлена!");
-        form.reset();
+        // ===== Task 5: Asynchronous Fetch Submission =====
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: "POST",
+          body: JSON.stringify({ name, email, message }),
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Network error");
+            return res.json();
+          })
+          .then(() => {
+            alert("✅ Сообщение успешно отправлено (через fetch)!");
+            form.reset();
+            errorBox.className = "alert alert-success mt-3";
+            errorBox.textContent = "Форма отправлена успешно!";
+          })
+          .catch(() => {
+            errorBox.className = "alert alert-warning mt-3";
+            errorBox.textContent = "⚠️ Ошибка при отправке данных. Попробуйте позже.";
+          });
       }
     });
   }
@@ -81,7 +99,28 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateTime, 1000);
   }
 
-  // ===== Task 6: Navigation with Arrow Keys =====
+  // ===== Task 6: Greeting Based on Time (Switch Statement) =====
+  const greetingBanner = document.createElement("div");
+  greetingBanner.className = "alert alert-info text-center m-0";
+  document.body.prepend(greetingBanner);
+
+  const currentHour = new Date().getHours();
+  let greetingText;
+
+  switch (true) {
+    case currentHour < 12:
+      greetingText = "☀️ Good morning! Start your day with a great breakfast!";
+      break;
+    case currentHour < 18:
+      greetingText = "🌤️ Good afternoon! Try our tasty lunch ideas!";
+      break;
+    default:
+      greetingText = "🌙 Good evening! Relax with a nice dinner or dessert.";
+  }
+
+  greetingBanner.textContent = greetingText;
+
+  // ===== Task 7: Navigation with Arrow Keys =====
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
   let focusIndex = 0;
   document.addEventListener("keydown", (e) => {
@@ -94,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ===== Task 7: Arrays & Functions =====
+  // ===== Task 8: Arrays & Functions =====
   const recipes = [
     { name: "Pancakes", category: "Breakfast" },
     { name: "Caesar Salad", category: "Lunch" },
@@ -106,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   showRecipes();
 
-  // ===== Task 8: Sound Effect on Button Click =====
+  // ===== Task 9: Sound Effect on Button Click =====
   const clickSound = document.querySelector("#clickSound");
   if (clickSound) {
     document.querySelectorAll("button").forEach(btn => {
@@ -117,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== Task 9: Modal Animation =====
+  // ===== Task 10: Modal Animation =====
   const modalDialog = document.querySelector(".modal-dialog-simple");
   if (modal && modalDialog) {
     modalDialog.style.transition = "transform 0.3s ease, opacity 0.3s ease";
@@ -133,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(modal, { attributes: true });
   }
 
-  // ===== Task 10: Back to Top Button =====
+  // ===== Task 11: Back to Top Button =====
   const backToTop = document.createElement("button");
   backToTop.textContent = "↑";
   backToTop.id = "backToTop";
