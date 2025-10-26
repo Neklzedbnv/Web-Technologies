@@ -169,6 +169,23 @@ $("#toTopBtn").on("click", function () {
   $("html, body").animate({ scrollTop: 0 }, 600);
 });
 
+// Task 9: Lazy Loading Images
+$(document).ready(function () {
+  function lazyLoad() {
+    $('.lazy').each(function () {
+      if ($(this).offset().top < $(window).scrollTop() + $(window).height()) {
+        if (!$(this).attr('data-loaded')) {
+          $(this).attr('src', $(this).data('src'));
+          $(this).attr('data-loaded', true);
+          $(this).css({ opacity: 1, transition: 'opacity 0.8s' });
+        }
+      }
+    });
+  }
+
+  lazyLoad();
+  $(window).on('scroll', lazyLoad);
+});
 
 
 
