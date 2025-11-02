@@ -172,16 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(modal, { attributes: true });
   }
 
-  // ===== Task 11: Back to Top Button =====
-  const backToTop = document.createElement("button");
-  backToTop.textContent = "↑";
-  backToTop.id = "backToTop";
-  backToTop.className = "btn btn-primary position-fixed bottom-0 end-0 m-3";
-  document.body.appendChild(backToTop);
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
   // ===== Extra DOM Feature: Read More (about.html) =====
   const moreText = document.querySelector("#extraText");
   const readBtn = document.querySelector("#readMoreBtn");
