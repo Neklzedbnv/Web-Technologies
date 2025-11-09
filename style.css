@@ -442,3 +442,7 @@ body.darkmode header {
   color: #ffffff !important;
 }
 
+
+#favoritesContainer + .row.g-4 {
+  display: none;
+}

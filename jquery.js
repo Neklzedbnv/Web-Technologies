@@ -187,5 +187,81 @@ $(document).ready(function () {
   $(window).on('scroll', lazyLoad);
 });
 
+// === ADD TO FAVORITES ===
+$(document).on("click", ".add-fav", function () {
+  const recipe = {
+    title: $(this).data("title"),
+    img: $(this).data("img"),
+    desc: $(this).data("desc")
+  };
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // если блюдо уже есть — не добавляем дубликат
+  if (!recipe.title || favorites.some(item => item.title === recipe.title)) {
+    alert("⚠ Already in Favorites!");
+    return;
+  }
+
+  favorites.push(recipe);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+  alert("✅ Added to Favorites!");
+});
+
+// === LOAD FAVORITES ===
+function loadFavorites() {
+  const container = $("#favoritesContainer");
+  if (!container.length) return;
+
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Удаляем битые / пустые записи
+  favorites = favorites.filter(item => item && item.title && item.img);
+
+  container.empty();
+
+  if (favorites.length === 0) {
+    container.html(`<p class="text-muted text-center">No favorites yet.</p>`);
+    return;
+  }
+
+  favorites.forEach(item => {
+    container.append(`
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm">
+          <img src="${item.img}" class="card-img-top object-fit-contain" alt="${item.title}">
+          <div class="card-body">
+            <h5 class="card-title">${item.title}</h5>
+            <p class="card-text">${item.desc}</p>
+            <button class="btn btn-danger remove-fav" data-title="${item.title}">
+              ❌ Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+}
+
+// === REMOVE FAVORITE ===
+$(document).on("click", ".remove-fav", function () {
+  const title = $(this).data("title");
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  favorites = favorites.filter(item => item.title !== title);
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+  // Удаляем карточку с экрана без перезагрузки
+  $(this).closest(".col-12, .col-md-6, .col-lg-4").remove();
+
+  if ($("#favoritesContainer").children().length === 0) {
+    $("#favoritesContainer").html(`<p class="text-muted text-center">No favorites yet.</p>`);
+  }
+});
+
+// Загружаем избранное при заходе на страницу
+$(document).ready(loadFavorites);
+
+
 
 
