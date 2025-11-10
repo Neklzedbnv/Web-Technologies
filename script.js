@@ -204,3 +204,51 @@ document.addEventListener("DOMContentLoaded", () => {
     darkmode !== "active" ? enableDarkmode() : disableDarkmode()
   })
 });
+
+
+// === External API Integration (TheMealDB) ===
+document.addEventListener("DOMContentLoaded", () => {
+  const recipeContainer = document.getElementById("api-recipes");
+  const searchInput = document.getElementById("searchInput");
+
+ 
+  function loadRecipes(query = "pasta") {
+    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+      .then(response => response.json())
+      .then(data => {
+        const meals = data.meals;
+        if (meals) {
+          recipeContainer.innerHTML = meals
+            .map(meal => `
+              <div class="recipe-card">
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                <h3>${meal.strMeal}</h3>
+                <p>${meal.strArea} | ${meal.strCategory}</p>
+              </div>
+            `)
+            .join("");
+        } else {
+          recipeContainer.innerHTML = "<p style='text-align:center;'>No recipes found.</p>";
+        }
+      })
+      .catch(err => {
+        console.error("API Error:", err);
+        recipeContainer.innerHTML = "<p style='text-align:center;color:red;'>Failed to load recipes.</p>";
+      });
+  }
+
+  loadRecipes();
+
+  // Поиск рецептов
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.trim();
+      if (query.length >= 2) {
+        loadRecipes(query);
+      } else {
+        loadRecipes("pasta");
+      }
+    });
+  }
+});
+
